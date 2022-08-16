@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <title>Карманная библиотека</title>
+    <meta charset="utf-8" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
+    ></script>
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/css/index.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">Карманная библиотека</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i
+            class="material-icons"
+          >menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="/">Список доступных книг</a></li>
+          <li class="active"><a href="/create">Добавить книгу</a></li>
+          <li><a href="/pfrofile">Профиль</a></li>
+        </ul>
+      </div>
+    </nav>
+    <ul class="sidenav" id="mobile-demo">
+      <li><a href="/">Список доступных книг</a></li>
+      <li class="active"><a href="/create">Добавить книгу</a></li>
+      <li><a href="/pfrofile">Профиль</a></li>
+    </ul>
+    <section class="content-wrapper">
+      <h1>{{book.title}}</h1>
+      {{book.bookFile}}
+      {{book.bookFile}}
+      <div>
+        <img
+        style="object-fit: cover;"
+        {{#if book.fileCover }}
+          src='/books/{{book.fileCover}}'
+         {{else}}  
+          src='/books/not-cover.jpeg'
+          {{/if}}
+          alt="coverage not found"
+          width="300"
+        />
+        <p class="book-info">
+          <b class="book-label">Описание: </b>{{book.description}}
+        </p>
+        <p class="book-info">
+          <b class="book-label">Авторы: </b>{{book.authors}}
+        </p>
+      </div>
+    </section>
+    <section style="display: flex; gap: 20px; flex-direction:column;">
+      <h2>Работа с документом</h2>
+      {{#if book.fileBook}}
+       <form method="GET" action="/{{book.id}}/download">
+        <button class="btn" type="submit">Скачать книгу</button>
+      </form>
+      {{/if}}
+      <a href="/{{book.id}}/update" class="btn">Редактировать</a>
+      <form method="POST" action="/{{book.id}}/delete">
+        <button class="btn" type="submit">Удалить</button>
+      </form>
+    </section>
+    <section>
+      <p>
+        Страница просмотрена: {{counter.count.counter}} раз/а
+      </p>
+    </section>
+  </body>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() { console.log(M)
+    var elems = document.querySelectorAll('.sidenav'); var instances =
+    M.Sidenav.init(elems, {}); });
+  </script>
+</html>

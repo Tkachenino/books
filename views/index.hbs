@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <title>Карманная библиотека</title>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
+    ></script>
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/css/index.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">Карманная библиотека</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i
+            class="material-icons"
+          >menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li class="active"><a href="/">Список доступных книг</a></li>
+          <li><a href="/create">Добавить книгу</a></li>
+          <li><a href="/pfrofile">Профиль</a></li>
+        </ul>
+      </div>
+    </nav>
+    <ul class="sidenav" id="mobile-demo">
+      <li class="active"><a href="/">Список доступных книг</a></li>
+      <li><a href="/create">Добавить книгу</a></li>
+      <li><a href="/pfrofile">Профиль</a></li>
+    </ul>
+    <section class="content-wrapper">
+      <h1>Список доступных книг</h1>
+      <ul class="books-list">
+        {{#each books}}
+          <li>
+            <a href="/{{this.id}}" class="list-item">
+              <img
+              {{#if this.fileCover }}
+                src='/books/{{this.fileCover}}'
+              {{else}}  
+               src='/books/not-cover.jpeg'
+              {{/if}} 
+              alt="coverage not found" />
+              <div class="book-info-list">
+                <p class="book-info">
+                  <b class="book-label">Название: </b>{{this.title}}
+                </p>
+                <p class="book-info">
+                  <b class="book-label">Описание: </b>{{this.description}}
+                </p>
+                <p class="book-info">
+                  <b class="book-label">Авторы: </b>{{this.authors}}
+                </p>
+               
+                  <p class="book-info">
+                    <b class="book-label">Доступна: </b> 
+                     {{#if this.fileBook }}
+                    загружена
+                     {{else}}  
+                    не загружена  
+                {{/if}} 
+                  </p>
+               
+              </div>
+            </a>
+          </li>
+        {{/each}}
+      </ul>
+    </section>
+  </body>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() { console.log(M)
+    var elems = document.querySelectorAll('.sidenav'); var instances =
+    M.Sidenav.init(elems, {}); });
+  </script>
+</html>
