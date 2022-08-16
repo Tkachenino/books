@@ -1,7 +1,8 @@
 const fetch = require('node-fetch');
+const host = process.env.DEV ? process.env.COUNTER_HOST_DOCKER : process.env.COUNTER_HOST_HEROKU;
 
 const getCounter = async (id) => {
- const res = await fetch(`https://my-counter-app.herokuapp.com/counter/${id}`);
+ const res = await fetch(`${host}/counter/${id}`);
 const count = await res.json();
  console.log(count)
  return {id, count};
@@ -9,7 +10,7 @@ const count = await res.json();
 
 const incCounter = async (id) => {
   try {
-    const res = await fetch(`https://my-counter-app.herokuapp.com/counter/${id}/incr`, {
+    const res = await fetch(`${host}/counter/${id}/incr`, {
     method: 'POST'
   });
   const count = await res.json();

@@ -7,7 +7,6 @@ const cors = require('cors');
 
 const app = express();
 app.use(cors());
-
 app.set('view engine', 'hbs');
 
 app.use(express.static(__dirname + '/public'));
