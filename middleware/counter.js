@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 
 const getCounter = async (id) => {
- const res = await fetch(`http://counter:3000/counter/${id}`);
+ const res = await fetch(`https://my-counter-app.herokuapp.com/counter/${id}`);
 const count = await res.json();
  console.log(count)
  return {id, count};
@@ -9,7 +9,7 @@ const count = await res.json();
 
 const incCounter = async (id) => {
   try {
-    const res = await fetch(`http://counter:3000/counter/${id}/incr`, {
+    const res = await fetch(`https://my-counter-app.herokuapp.com/counter/${id}/incr`, {
     method: 'POST'
   });
   const count = await res.json();
