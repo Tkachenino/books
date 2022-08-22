@@ -4,7 +4,6 @@ const host = process.env.DEV ? process.env.COUNTER_HOST_DOCKER : process.env.COU
 const getCounter = async (id) => {
  const res = await fetch(`${host}/counter/${id}`);
 const count = await res.json();
- console.log(count)
  return {id, count};
 };
 

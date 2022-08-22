@@ -41,7 +41,7 @@
       <ul class="books-list">
         {{#each books}}
           <li>
-            <a href="/{{this.id}}" class="list-item">
+            <a href="/{{this._id}}" class="list-item">
               <img
               {{#if this.fileCover }}
                 src='/books/{{this.fileCover}}'
@@ -77,7 +77,7 @@
     </section>
   </body>
   <script>
-    document.addEventListener('DOMContentLoaded', function() { console.log(M)
+    document.addEventListener('DOMContentLoaded', function() { 
     var elems = document.querySelectorAll('.sidenav'); var instances =
     M.Sidenav.init(elems, {}); });
   </script>

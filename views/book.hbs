@@ -61,12 +61,12 @@
     <section style="display: flex; gap: 20px; flex-direction:column;">
       <h2>Работа с документом</h2>
       {{#if book.fileBook}}
-       <form method="GET" action="/{{book.id}}/download">
+       <form method="GET" action="/{{book._id}}/download">
         <button class="btn" type="submit">Скачать книгу</button>
       </form>
       {{/if}}
-      <a href="/{{book.id}}/update" class="btn">Редактировать</a>
-      <form method="POST" action="/{{book.id}}/delete">
+      <a href="/{{book._id}}/update" class="btn">Редактировать</a>
+      <form method="POST" action="/{{book._id}}/delete">
         <button class="btn" type="submit">Удалить</button>
       </form>
     </section>
@@ -77,7 +77,7 @@
     </section>
   </body>
   <script>
-    document.addEventListener('DOMContentLoaded', function() { console.log(M)
+    document.addEventListener('DOMContentLoaded', function() { 
     var elems = document.querySelectorAll('.sidenav'); var instances =
     M.Sidenav.init(elems, {}); });
   </script>

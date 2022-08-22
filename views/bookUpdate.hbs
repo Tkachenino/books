@@ -2,10 +2,7 @@
   <head>
     <title>Карманная библиотека</title>
     <meta charset="utf-8" />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
@@ -37,12 +34,7 @@
     </ul>
     <section class="content-wrapper">
       <h1>Добавить книгу</h1>
-      <form
-        class="create-form"
-        method="POST"
-        action="/{{book.id}}"
-        enctype="multipart/form-data"
-      >
+      <form class="create-form" method="POST" action="/{{book._id}}" enctype="multipart/form-data">
         <div class="row">
           <div class="input-field col s12">
             <input
@@ -128,8 +120,7 @@
     </section>
   </body>
   <script>
-    document.addEventListener('DOMContentLoaded', function() { console.log(M)
-    var elems = document.querySelectorAll('.sidenav'); var instances =
-    M.Sidenav.init(elems, {}); });
+    document.addEventListener('DOMContentLoaded', function() { var elems =
+    document.querySelectorAll('.sidenav'); var instances = M.Sidenav.init(elems, {}); });
   </script>
 </html>

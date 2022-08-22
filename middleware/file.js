@@ -5,7 +5,6 @@ const storage = multer.diskStorage({
     cb(null, 'public/books');
   },
   filename: function (req, file, cb) {
-    console.log('file', file)
     cb(null, new Date().toISOString() + '-' + file.originalname)
   }
 });
