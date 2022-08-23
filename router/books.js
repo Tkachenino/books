@@ -4,6 +4,7 @@ const {Book} = require('../models');
 const BookBD = require('../schema/Book');
 const {fileMiddleware} = require('../middleware');
 const fs = require('fs/promises');
+const {existsSync} = require('fs');
 const path = require('path');
 const {counterMiddleware} = require('../middleware');
 
@@ -43,8 +44,7 @@ router.post('/:id', fileMiddleware.none(), async (req, res) => {
     const {id} = req.params;
     const {title, description, authors, favorite} = req.body;
     const book = await BookBD.findById(id);
-    const patchItem = {...book, title, description, authors, favorite };
-    await BookBD.updateOne({_id: id}, {...patchItem});
+    await BookBD.updateOne({_id: id}, {title, description, authors, favorite});
     res.redirect(`/${id}`);
   } catch (error) {
     res.status(404).redirect('/not-found');
@@ -100,14 +100,18 @@ router.post('/:id/delete', async (req, res) => {
   try {
     const {id} = req.params;
     const book = await BookBD.findById(id);
-    const pathCover = path.join(__dirname, '../', '/public', '/books', book.fileCover);
-    const pathBook = path.join(__dirname, '../', '/public', '/books', book.fileBook);
     if(book.fileCover) {
-    await fs.unlink(pathCover);
+    const pathCover = path.join(__dirname, '../', '/public', '/books', book.fileCover);
+      if (existsSync(pathCover)) {
+        await fs.unlink(pathCover);
+      }
     }
 
-    if(item.fileBook) {
-      await fs.unlink(pathBook);
+    if(book.fileBook) {
+    const pathBook = path.join(__dirname, '../', '/public', '/books', book.fileBook);
+      if (existsSync(pathBook)) {
+        await fs.unlink(pathBook);
+      }
     }
 
     await BookBD.findByIdAndDelete(id);
